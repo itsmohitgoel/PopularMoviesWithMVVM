@@ -1,17 +1,19 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.library)
+    id(Plugins.jetbrainsKotlin)
+    id(Plugins.kapt)
+    id(Plugins.parcelize)
+    id(Plugins.hilt)
 }
 
 android {
     namespace = "com.mogo.domain"
-    compileSdk = 34
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = ProjectConfig.minSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunner = Dependencies.testRunner
     }
 
     buildTypes {
@@ -28,16 +30,22 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ProjectConfig.jvmTarget
     }
 }
 
 dependencies {
+    implementation(project(Module.common))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    //Dagger - Hilt
+    implementation(Dependencies.hilt)
+    kapt(Dependencies.hiltAndroidCompiler)
+    kapt(Dependencies.hiltCompiler)
+
+    implementation(Dependencies.androidXCore)
+
+    testImplementation(TestDependencies.coroutinesTest)
+    testImplementation(TestDependencies.junit)
+    testImplementation(TestDependencies.mockitoCore)
+    testImplementation(TestDependencies.mockk)
 }

@@ -1,23 +1,24 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.app)
+    id(Plugins.jetbrainsKotlin)
+    id(Plugins.kapt)
+    id(Plugins.parcelize)
+    id(Plugins.hilt)
+    id(Plugins.safeArgs)
 }
 
 android {
     namespace = "com.mogo.moviescatalogue"
-    compileSdk = 34
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         applicationId = "com.mogo.moviescatalogue"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
+        versionCode = ProjectConfig.versionCode
+        versionName = ProjectConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        testInstrumentationRunner = Dependencies.testRunner
     }
 
     buildTypes {
@@ -34,9 +35,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ProjectConfig.jvmTarget
     }
     buildFeatures {
+        viewBinding = true
         compose = true
     }
     composeOptions {
@@ -49,21 +51,38 @@ android {
     }
 }
 
-dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+dependencies {
+    // module dependency
+    implementation(project(Module.domain))
+    implementation(project(Module.data))
+    implementation(project(Module.common))
+
+    //android
+    implementation(Dependencies.material)
+    implementation(Dependencies.androidXCore)
+    implementation(Dependencies.viewModelLifecycle)
+
+    //compose
+    implementation(Dependencies.activityCompose)
+    implementation(Dependencies.composeUI)
+    implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composeUiTooling)
+    implementation(Dependencies.composeNavigation)
+    implementation(Dependencies.hiltComposeNavigation)
+    implementation(Dependencies.coilCompose)
+
+    //Dagger - Hilt
+    implementation(Dependencies.hilt)
+    kapt(Dependencies.hiltAndroidCompiler)
+    kapt(Dependencies.hiltCompiler)
+
+    // Unit Testing
+    testImplementation(TestDependencies.junit)
+    testImplementation(TestDependencies.mockk)
+    testImplementation(TestDependencies.coroutinesTest)
+    testImplementation(TestDependencies.mockitoCore)
+    testImplementation(TestDependencies.archCoreTest)
+    testImplementation(TestDependencies.mockitoInline)
+
 }
