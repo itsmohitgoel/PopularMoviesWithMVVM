@@ -6,7 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.mogo.common.theme.AppTheme
+import com.mogo.moviescatalogue._1_movielist.MovieListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +22,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Surface(color = MaterialTheme.colors.background) {
-//                    AppNavigationGraph()
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screens.MovieListScreenIdentifier.route
+                    ) {
+                        composable(
+                            route = Screens.MovieListScreenIdentifier.route
+                        ) {
+                            MovieListScreen(this@MainActivity, navController)
+                        }
+//                        composable(
+//                            route = Screens.CoinDetailScreen.route + "/{coinId}"
+//                        ) {
+//                            CoinDetailScreen()
+//                        }
+                    }
                 }
             }
         }
