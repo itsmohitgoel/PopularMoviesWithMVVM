@@ -18,7 +18,6 @@ object UiConstants {
     val PADDING_MEDIUM = 8.dp
     val PADDING_SMALL = 4.dp
 
-    const val WEIGHT_1 = 1f
     const val MAX_LINE_SINGLE = 1
     const val MAX_LINE_DOUBLE = 2
     const val MAX_LINE_EIGHT = 12

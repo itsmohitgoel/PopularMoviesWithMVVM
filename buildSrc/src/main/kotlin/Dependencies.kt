@@ -14,7 +14,6 @@ object Versions {
     const val hilt = "2.48"
     const val hiltCompiler = "1.1.0"
     const val archCoreTest = "2.2.0"
-    const val turbineTest = "1.0.0"
     const val activityCompose = "1.8.2"
     const val compose = "1.6.0"
     const val composeNavigation = "2.7.6"
@@ -32,16 +31,16 @@ object Plugins {
     const val safeArgs = "androidx.navigation.safeargs"
 }
 
-object Module{
+object Module {
     const val common = ":common"
     const val app = ":app"
     const val data = ":data"
     const val domain = ":domain"
 }
 
-object ProjectConfig{
+object ProjectConfig {
     const val compileSdk = 34
-    const val minSdk =24
+    const val minSdk = 24
     const val targetSdk = 33
     const val versionCode = 1
     const val versionName = "1.0"

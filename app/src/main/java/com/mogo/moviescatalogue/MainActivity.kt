@@ -3,22 +3,20 @@ package com.mogo.moviescatalogue
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mogo.moviescatalogue.common.theme.AppTheme
-import com.mogo.moviescatalogue.movielist.MovieListScreen
-import com.mogo.moviescatalogue.moviedetail.MovieDetailScreen
 import com.mogo.moviescatalogue.common.Constants.PARAM_MOVIE_ID
+import com.mogo.moviescatalogue.common.theme.AppTheme
+import com.mogo.moviescatalogue.moviedetail.MovieDetailScreen
+import com.mogo.moviescatalogue.movielist.MovieListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,17 +25,17 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screens.MovieListScreenIdentifier.route
+                        startDestination = Screen.MOVIE_LIST_SCREEN_IDENTIFIER.route
                     ) {
                         composable(
-                            route = Screens.MovieListScreenIdentifier.route
+                            route = Screen.MOVIE_LIST_SCREEN_IDENTIFIER.route
                         ) {
-                            MovieListScreen(this@MainActivity, navController)
+                            MovieListScreen(navController)
                         }
                         composable(
-                            route = Screens.MovieDetailScreenIdentifier.route + "/{$PARAM_MOVIE_ID}"
+                            route = Screen.MOVIE_DETAIL_SCREEN_IDENTIFIER.route + "/{$PARAM_MOVIE_ID}"
                         ) {
-                            MovieDetailScreen(this@MainActivity, navController)
+                            MovieDetailScreen(navController)
                         }
                     }
                 }

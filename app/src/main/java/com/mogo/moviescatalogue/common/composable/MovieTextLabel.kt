@@ -1,4 +1,4 @@
-package com.llyods.retailapp.presentation.feature.common.composable
+package com.mogo.moviescatalogue.common.composable
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

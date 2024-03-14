@@ -2,13 +2,12 @@ package com.mogo.moviescatalogue.common.composable
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 
 
@@ -19,20 +18,22 @@ fun TopToolBar(
 ) {
     if (toolbarParams.first) {
         TopAppBar(
-            title = { Text(text = toolbarParams?.second ?: "Detail Screen") },
+            title = { Text(text = toolbarParams.second ?: "Detail Screen",
+                color = Color.White) },
             navigationIcon = {
                 IconButton(onClick = {
                     navController.navigateUp()
                 }) {
-                    Icon(Icons.Rounded.ArrowBack, "")
+                    Icon(Icons.AutoMirrored.Rounded.ArrowBack, "",
+                        tint = Color.White)
                 }
             },
-            backgroundColor = MaterialTheme.colors.primary
+            backgroundColor = Color.Black
         )
     } else {
         TopAppBar(
-            title = { Text(text = toolbarParams?.second ?: "Movie App") },
-            backgroundColor = MaterialTheme.colors.primary
+            title = { Text(text = toolbarParams.second ?: "Movie App", color = Color.White) },
+            backgroundColor = Color.Black
         )
     }
 }

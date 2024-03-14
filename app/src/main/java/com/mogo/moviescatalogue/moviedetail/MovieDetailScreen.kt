@@ -1,6 +1,5 @@
 package com.mogo.moviescatalogue.moviedetail
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,21 +27,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.llyods.retailapp.presentation.feature.common.composable.MovieTextLabel
-import com.llyods.retailapp.presentation.feature.common.composable.PosterImage
-import com.mogo.moviescatalogue.common.theme.TealDetailHeader
 import com.mogo.moviescatalogue.R
-import com.mogo.moviescatalogue.moviedetail.viewmodel.MovieDetailViewModel
 import com.mogo.moviescatalogue.common.UiConstants
 import com.mogo.moviescatalogue.common.UiConstants.PADDING_LARGE
 import com.mogo.moviescatalogue.common.UiConstants.PADDING_MEDIUM
 import com.mogo.moviescatalogue.common.UiConstants.PADDING_SMALL
+import com.mogo.moviescatalogue.common.composable.MovieTextLabel
+import com.mogo.moviescatalogue.common.composable.PosterImage
 import com.mogo.moviescatalogue.common.composable.TopToolBar
 import com.mogo.moviescatalogue.common.model.MovieItem
+import com.mogo.moviescatalogue.common.theme.TealDetailHeader
+import com.mogo.moviescatalogue.moviedetail.viewmodel.MovieDetailViewModel
 
 @Composable
 fun MovieDetailScreen(
-    context: Context,
     navController: NavController,
     viewModel: MovieDetailViewModel = hiltViewModel()
 ) {
@@ -54,7 +52,7 @@ fun MovieDetailScreen(
     })
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        TopToolBar(Pair(true, movieDetail?.title), navController)
+        TopToolBar(Pair(true, "Popular Movies"), navController)
         Box(
             modifier = Modifier
                 .background(TealDetailHeader)
@@ -103,7 +101,7 @@ fun MovieDetailScreen(
                         MovieTextLabel(
                             title = movieDetail?.releaseDate ?: "",
                             maxLines = UiConstants.MAX_LINE_DOUBLE,
-                            modifier = Modifier.padding(start = UiConstants.PADDING_MEDIUM)
+                            modifier = Modifier.padding(start = PADDING_MEDIUM)
                         )
                     }
                     Row(
@@ -119,7 +117,7 @@ fun MovieDetailScreen(
                         MovieTextLabel(
                             title = "${movieDetail?.rating?.toInt() ?: 5} /10",
                             maxLines = UiConstants.MAX_LINE_DOUBLE,
-                            modifier = Modifier.padding(start = UiConstants.PADDING_MEDIUM)
+                            modifier = Modifier.padding(start = PADDING_MEDIUM)
                         )
                     }
                     Row(
@@ -135,7 +133,7 @@ fun MovieDetailScreen(
                         MovieTextLabel(
                             title = "${movieDetail?.popularity?.toInt() ?: 100}",
                             maxLines = UiConstants.MAX_LINE_DOUBLE,
-                            modifier = Modifier.padding(start = UiConstants.PADDING_MEDIUM)
+                            modifier = Modifier.padding(start = PADDING_MEDIUM)
                         )
                     }
                     Row(
@@ -149,9 +147,9 @@ fun MovieDetailScreen(
                             contentDescription = "Release date Symbol"
                         )
                         MovieTextLabel(
-                            title = "${movieDetail?.tagline ?: ""}",
+                            title = movieDetail?.tagline ?: "",
                             maxLines = UiConstants.MAX_LINE_DOUBLE,
-                            modifier = Modifier.padding(start = UiConstants.PADDING_MEDIUM)
+                            modifier = Modifier.padding(start = PADDING_MEDIUM)
                         )
                     }
                 }
@@ -164,7 +162,7 @@ fun MovieDetailScreen(
             maxLines = UiConstants.MAX_LINE_EIGHT,
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(start = PADDING_LARGE, top = UiConstants.PADDING_MEDIUM)
+                .padding(start = PADDING_LARGE, top = PADDING_MEDIUM)
                 .weight(0.5f)
 
         )

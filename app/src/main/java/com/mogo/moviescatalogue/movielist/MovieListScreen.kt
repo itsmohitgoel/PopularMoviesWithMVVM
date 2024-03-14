@@ -1,6 +1,5 @@
 package com.mogo.moviescatalogue.movielist
 
-import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,14 +20,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.mogo.moviescatalogue.Screens
+import com.mogo.moviescatalogue.Screen
+import com.mogo.moviescatalogue.common.composable.TopToolBar
 import com.mogo.moviescatalogue.movielist.component.MovieListItem
 import com.mogo.moviescatalogue.movielist.viewmodel.MovieListViewModel
-import com.mogo.moviescatalogue.common.composable.TopToolBar
 
 @Composable
 fun MovieListScreen(
-    context: Context,
     navController: NavController,
     viewModel: MovieListViewModel = hiltViewModel()
 ) {
@@ -40,14 +38,14 @@ fun MovieListScreen(
     }
     )
     Column(modifier = Modifier.fillMaxWidth()) {
-        TopToolBar(Pair(false, "Movie App"), navController)
+        TopToolBar(Pair(false, "Popular Movies"), navController)
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.value.movieList) { movieItem ->
                     MovieListItem(
                         movieItem = movieItem,
                         onClick = {
-                            navController.navigate(Screens.MovieDetailScreenIdentifier.route + "/${movieItem.movieId}")
+                            navController.navigate(Screen.MOVIE_DETAIL_SCREEN_IDENTIFIER.route + "/${movieItem.movieId}")
                         }
                     )
                 }

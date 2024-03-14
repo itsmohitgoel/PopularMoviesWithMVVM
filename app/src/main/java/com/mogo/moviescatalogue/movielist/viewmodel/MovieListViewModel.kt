@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieListViewModel @Inject constructor(
-    private val usecase: MovieListUseCase,
+    private val useCase: MovieListUseCase,
     private val mapper: MovieListPresentationMapper,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
@@ -29,7 +29,7 @@ class MovieListViewModel @Inject constructor(
      */
     suspend fun getMoviesList() {
         viewModelScope.launch(dispatcher) {
-            val result = usecase.execute()
+            val result = useCase.execute()
             when (result) {
                 is Result.Success -> {
                     _state.value =

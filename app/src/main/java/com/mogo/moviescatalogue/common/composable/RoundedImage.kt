@@ -1,5 +1,4 @@
-package com.llyods.retailapp.presentation.feature.common.composable
-
+package com.mogo.moviescatalogue.common.composable
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
