@@ -21,8 +21,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.mogo.moviescatalogue.Screens
 import com.mogo.moviescatalogue._1_movielist.component.MovieListItem
 import com.mogo.moviescatalogue._1_movielist.viewmodel.MovieListViewModel
+import com.mogo.moviescatalogue.common.composable.TopToolBar
 
 @Composable
 fun MovieListScreen(
@@ -37,15 +39,15 @@ fun MovieListScreen(
         viewModel.getMoviesList()
     }
     )
-
     Column(modifier = Modifier.fillMaxWidth()) {
+        TopToolBar(Pair(false, "Movie App"), navController)
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.value.movieList) { movieItem ->
                     MovieListItem(
                         movieItem = movieItem,
                         onClick = {
-//                            navController.navigate(Screens.CoinDetailScreen.route + "/${movieItem.id}")
+                            navController.navigate(Screens.MovieDetailScreenIdentifier.route + "/${movieItem.movieId}")
                         }
                     )
                 }

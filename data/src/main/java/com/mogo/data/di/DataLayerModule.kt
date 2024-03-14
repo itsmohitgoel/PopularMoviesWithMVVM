@@ -28,6 +28,7 @@ class DataLayerModule {
     }
 
     @Provides
+    @Singleton
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
@@ -41,6 +42,7 @@ class DataLayerModule {
     }
 
     @Provides
+    @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.HEADERS)

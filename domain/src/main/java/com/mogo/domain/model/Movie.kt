@@ -7,5 +7,7 @@ data class Movie (
     val backdropPath : String,
     val summary : String,
     val rating : Double,
-    val popularity : Double
+    val popularity : Double,
+    val releaseDate : String,
+    val tagline : String
 )

@@ -11,6 +11,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mogo.common.theme.AppTheme
 import com.mogo.moviescatalogue._1_movielist.MovieListScreen
+import com.mogo.moviescatalogue._2_moviedetail.MovieDetailScreen
+import com.mogo.moviescatalogue.common.Constants.PARAM_MOVIE_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,11 +34,11 @@ class MainActivity : ComponentActivity() {
                         ) {
                             MovieListScreen(this@MainActivity, navController)
                         }
-//                        composable(
-//                            route = Screens.CoinDetailScreen.route + "/{coinId}"
-//                        ) {
-//                            CoinDetailScreen()
-//                        }
+                        composable(
+                            route = Screens.MovieDetailScreenIdentifier.route + "/{$PARAM_MOVIE_ID}"
+                        ) {
+                            MovieDetailScreen(this@MainActivity, navController)
+                        }
                     }
                 }
             }

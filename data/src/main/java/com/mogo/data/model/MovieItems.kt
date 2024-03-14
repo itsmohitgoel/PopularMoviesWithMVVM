@@ -18,8 +18,6 @@ data class MovieDTO(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
-    @SerializedName("genre_ids")
-    val genre_ids: List<Int>,
     @SerializedName("id")
     val movieId: Int,
     @SerializedName("original_language")
@@ -33,7 +31,7 @@ data class MovieDTO(
     @SerializedName("poster_path")
     val posterPath: String,
     @SerializedName("release_date")
-    val release_date: String,
+    val releaseDate: String,
     @SerializedName("title")
     val title: String,
     @SerializedName("video")
@@ -42,4 +40,6 @@ data class MovieDTO(
     val rating: Double,
     @SerializedName("vote_count")
     val vote_count: Int
+    ,@SerializedName("tagline")
+    val tagline: String?
 )

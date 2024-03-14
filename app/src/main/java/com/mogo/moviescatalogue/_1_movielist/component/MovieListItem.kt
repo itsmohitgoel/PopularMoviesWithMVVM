@@ -36,27 +36,16 @@ fun MovieListItem(movieItem: MovieItem, onClick: (MovieItem) -> Unit) {
         Column {
             //title
             MovieTextLabel(
-                title = movieItem.title + "39393939",
+                title = movieItem.title,
                 fontWeight = FontWeight.Bold,
                 fontSize = TITLE,
                 modifier = Modifier.padding(start = PADDING_MEDIUM)
             )
             MovieTextLabel(
-                title = movieItem.rating.toString(),
+                title = "${movieItem.rating.toInt()}",
                 maxLines = MAX_LINE_DOUBLE,
                 modifier = Modifier.padding(start = PADDING_MEDIUM)
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun MovieItemPreview(){
-    MovieListItem(movieItem = MovieItem(
-        imageUrl = "https://image.tmdb.org/t/p/w500//hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg"
-    )
-    ) {
-
     }
 }
