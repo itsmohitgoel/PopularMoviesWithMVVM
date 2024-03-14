@@ -9,13 +9,13 @@ Illustrates Clean Architecture using MVVM design pattern for Android
 3. The current key is demo key and will work till March 22, 2024.
 
 ## USED CONCEPTS & LIBRARIES
-- [Kotlin]
-- [MVVM]
+- Kotlin
+- MVVM
 - Jetpack components:
-   - [Jetpack Compose]
-   - [Lifecycle]
-   - [ViewModel]
-- [Kotlin Coroutines]
-- [Retrofit]
-- [Kotlin Flow]
-- [Hilt]
+   - Jetpack Compose
+   - Lifecycle
+   - ViewModel
+- Kotlin Coroutines
+- Retrofit
+- Kotlin Flow
+- Hilt
