@@ -9,9 +9,9 @@ import androidx.compose.material.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mogo.common.theme.AppTheme
-import com.mogo.moviescatalogue._1_movielist.MovieListScreen
-import com.mogo.moviescatalogue._2_moviedetail.MovieDetailScreen
+import com.mogo.moviescatalogue.common.theme.AppTheme
+import com.mogo.moviescatalogue.movielist.MovieListScreen
+import com.mogo.moviescatalogue.moviedetail.MovieDetailScreen
 import com.mogo.moviescatalogue.common.Constants.PARAM_MOVIE_ID
 import dagger.hilt.android.AndroidEntryPoint
 

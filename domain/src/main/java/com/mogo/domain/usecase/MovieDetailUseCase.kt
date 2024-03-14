@@ -1,8 +1,8 @@
 package com.mogo.domain.usecase
 
-import com.mogo.domain.repo.MovieRepository
+import com.mogo.domain.repo.MovieDetailRepository
 import javax.inject.Inject
 
-class MovieDetailUseCase @Inject constructor(private val movieRepository: MovieRepository){
-    suspend fun execute(movieId : Int) = movieRepository.fetchMovieDetail(movieId)
+class MovieDetailUseCase @Inject constructor(private val movieDetailRepository: MovieDetailRepository) {
+    suspend fun execute(movieId: Int) = movieDetailRepository.fetchMovieDetail(movieId)
 }

@@ -56,7 +56,6 @@ dependencies {
     // module dependency
     implementation(project(Module.domain))
     implementation(project(Module.data))
-    implementation(project(Module.common))
 
     //android
     implementation(Dependencies.material)

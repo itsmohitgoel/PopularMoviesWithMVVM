@@ -36,7 +36,6 @@ android {
 
 dependencies {
     implementation(project(Module.domain))
-    implementation(project(Module.common))
 
     //Dagger - Hilt
     implementation(Dependencies.hilt)

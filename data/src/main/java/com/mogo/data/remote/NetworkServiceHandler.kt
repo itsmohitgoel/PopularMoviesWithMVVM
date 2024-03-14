@@ -1,9 +1,14 @@
 package com.mogo.data.remote
 
-import com.mogo.common.utils.Resource
+import android.accounts.NetworkErrorException
+import com.mogo.domain.utils.Result
+import com.mogo.data.Constants
+import com.mogo.data.Constants.GENERIC_ERROR
 
-suspend fun <T> handleNetworkCall(lambda: suspend () -> T): Resource<T> = try {
-    Resource.Success(lambda())
+suspend fun <T> handleNetworkCall(lambda: suspend () -> T): Result<T> = try {
+    Result.Success(lambda())
+} catch (e: NetworkErrorException) {
+    Result.Error(Constants.NETWORK_ERROR)
 } catch (e: Exception) {
-    Resource.Error("")
+    Result.Error(GENERIC_ERROR)
 }

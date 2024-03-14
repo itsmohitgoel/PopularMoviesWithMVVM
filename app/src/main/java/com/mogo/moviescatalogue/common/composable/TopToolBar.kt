@@ -32,7 +32,7 @@ fun TopToolBar(
     } else {
         TopAppBar(
             title = { Text(text = toolbarParams?.second ?: "Movie App") },
-            backgroundColor = MaterialTheme.colors.secondary
+            backgroundColor = MaterialTheme.colors.primary
         )
     }
 }

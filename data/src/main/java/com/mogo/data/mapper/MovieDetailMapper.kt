@@ -1,15 +1,12 @@
 package com.mogo.data.mapper
 
-import com.mogo.common.utils.Mapper
 import com.mogo.data.Constants.DEFAULT_TAGLINE
 import com.mogo.data.model.MovieDTO
 import com.mogo.domain.model.Movie
 import javax.inject.Inject
 
-class MovieDetailMapper @Inject constructor():
-    Mapper<MovieDTO, Movie> {
-
-    override fun map(data: MovieDTO) = with(data) {
+class MovieDetailMapper @Inject constructor() {
+    fun mapDetailDTOToDomainModel(data: MovieDTO) = with(data) {
         Movie(
             movieId = movieId,
             title = title,
@@ -19,7 +16,7 @@ class MovieDetailMapper @Inject constructor():
             rating = rating,
             popularity = popularity,
             releaseDate = releaseDate,
-            tagline = tagline?:DEFAULT_TAGLINE
+            tagline = tagline ?: DEFAULT_TAGLINE
         )
     }
 }

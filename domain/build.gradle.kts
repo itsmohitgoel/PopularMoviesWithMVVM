@@ -35,8 +35,6 @@ android {
 }
 
 dependencies {
-    implementation(project(Module.common))
-
     //Dagger - Hilt
     implementation(Dependencies.hilt)
     kapt(Dependencies.hiltAndroidCompiler)
