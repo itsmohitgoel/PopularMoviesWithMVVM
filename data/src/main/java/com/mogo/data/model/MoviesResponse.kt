@@ -6,14 +6,14 @@ data class MoviesResponse(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")
-    val movies: List<MovieDTO>,
+    val moviesList: List<MovieDto>,
     @SerializedName("total_pages")
-    val total_pages: Int,
+    val totalPages: Int,
     @SerializedName("total_results")
-    val total_results: Int
+    val totalResults: Int
 )
 
-data class MovieDTO(
+data class MovieDto(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
@@ -21,9 +21,9 @@ data class MovieDTO(
     @SerializedName("id")
     val movieId: Int,
     @SerializedName("original_language")
-    val original_language: String,
+    val originalLanguage: String,
     @SerializedName("original_title")
-    val original_title: String,
+    val originalTitle: String,
     @SerializedName("overview")
     val summary: String,
     @SerializedName("popularity")
@@ -39,7 +39,7 @@ data class MovieDTO(
     @SerializedName("vote_average")
     val rating: Double,
     @SerializedName("vote_count")
-    val vote_count: Int
-    ,@SerializedName("tagline")
+    val voteCount: Int
+    , @SerializedName("tagline")
     val tagline: String?
 )

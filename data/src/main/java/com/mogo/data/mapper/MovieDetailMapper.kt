@@ -1,13 +1,13 @@
 package com.mogo.data.mapper
 
 import com.mogo.data.Constants.DEFAULT_TAGLINE
-import com.mogo.data.model.MovieDTO
-import com.mogo.domain.model.Movie
+import com.mogo.data.model.MovieDto
+import com.mogo.domain.model.MovieInfo
 import javax.inject.Inject
 
 class MovieDetailMapper @Inject constructor() {
-    fun mapDetailDTOToDomainModel(data: MovieDTO) = with(data) {
-        Movie(
+    fun mapDetailDtoToDomainModel(data: MovieDto) = with(data) {
+        MovieInfo(
             movieId = movieId,
             title = title,
             posterPath = posterPath,

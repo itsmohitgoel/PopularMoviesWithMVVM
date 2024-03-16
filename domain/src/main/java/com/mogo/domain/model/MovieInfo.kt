@@ -1,6 +1,6 @@
 package com.mogo.domain.model
 
-data class Movie (
+data class MovieInfo (
     val movieId: Int,
     val title : String,
     val posterPath : String,
