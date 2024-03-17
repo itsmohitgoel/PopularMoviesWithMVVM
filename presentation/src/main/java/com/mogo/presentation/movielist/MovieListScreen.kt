@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.mogo.presentation.common.composable.ErrorComponent
 import com.mogo.presentation.common.composable.TopToolBar
 import com.mogo.presentation.common.model.MovieItem
 import com.mogo.presentation.movielist.component.MovieListItem
@@ -61,23 +62,24 @@ fun MovieListScreen(
                 }
 
                 stateValue.error.isNotBlank() -> {
-                    Text(
-                        text = stateValue.error,
-                        color = MaterialTheme.colors.error,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 20.dp)
-                            .align(Alignment.Center)
-                    )
+                    ErrorComponent(errorMessage = stateValue.error)
+//                    Text(
+//                        text = stateValue.error,
+//                        color = MaterialTheme.colors.error,
+//                        textAlign = TextAlign.Center,
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(horizontal = 20.dp)
+//                            .align(Alignment.Center)
+//                    )
                 }
 
                 !stateValue.movies.isNullOrEmpty() -> {
-                    MovieList(movies = stateValue.movies) { movieItem: MovieItem ->
+                    MovieList(movies = stateValue.movies, onItemClick = { movieItem: MovieItem ->
                         viewModel.submitAction(
                             MovieListAction.MovieListItemClick(movieItem.movieId)
                         )
-                    }
+                    })
                 }
             }
         }

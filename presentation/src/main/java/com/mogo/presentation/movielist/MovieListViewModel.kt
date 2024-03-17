@@ -56,7 +56,8 @@ class MovieListViewModel @Inject constructor(
     }
 
     private suspend fun fetchMovieListState(): MovieListState {
-        val result = when (val result = useCase.execute()) {
+        val result = useCase.execute()
+        val state = when (result) {
             is Result.Success -> {
                 MovieListState(
                     movies = mapper.mapMovieInfoListToMovieItemList(
@@ -67,7 +68,7 @@ class MovieListViewModel @Inject constructor(
 
             is Result.Error -> MovieListState(error = result.message)
         }
-        return result
+        return state
     }
 
     private fun submitState(state: MovieListState) {

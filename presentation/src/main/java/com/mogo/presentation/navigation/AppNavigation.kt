@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mogo.presentation.moviedetail.MovieDetailScreen
 import com.mogo.presentation.movielist.MovieListScreen
-import com.mogo.presentation.navigation.NavigationParams.MOVIE_ID
+import com.mogo.presentation.navigation.NavigationParams.PARAM_MOVIE_ID
 
 @Composable
 fun AppNavigation() {
@@ -18,12 +18,12 @@ fun AppNavigation() {
         composable(route = ScreensRoute.HOME_SCREEN.route,
             content = { MovieListScreen(navController)}) //TODO: Avoid passing navController
 
-        composable(route = ScreensRoute.DETAIL_SCREEN.route,
+        composable(route = ScreensRoute.DETAIL_SCREEN.route + "/{$PARAM_MOVIE_ID}",
             arguments = listOf(
-                navArgument(name = MOVIE_ID , builder = {type = NavType.IntType})),
+                navArgument(name = PARAM_MOVIE_ID , builder = {type = NavType.IntType})),
             content = {backStackEntry ->
                 MovieDetailScreen(
                     navController = navController,
-                    movieId = requireNotNull( backStackEntry.arguments?.getInt(MOVIE_ID)?: 0))})
+                    movieId = requireNotNull( backStackEntry.arguments?.getInt(PARAM_MOVIE_ID)?: 0))})
     }
 }

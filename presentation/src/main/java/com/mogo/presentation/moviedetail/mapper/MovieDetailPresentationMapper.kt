@@ -1,12 +1,12 @@
-package com.mogo.moviescatalogue.moviedetail.mapper
+package com.mogo.presentation.moviedetail.mapper
 
 import com.mogo.domain.model.MovieInfo
-import com.mogo.moviescatalogue.common.Constants.IMAGE_BASE_URL
-import com.mogo.moviescatalogue.common.model.MovieItem
+import com.mogo.presentation.common.Constants.IMAGE_BASE_URL
+import com.mogo.presentation.common.model.MovieItem
 import javax.inject.Inject
 
 class MovieDetailPresentationMapper @Inject constructor() {
-    fun mapDetailDomainModelToPresentationModel(data: MovieInfo) = with(data) {
+    fun mapMovieInfoToMovieItem(data: MovieInfo) = with(data) {
         MovieItem(
             movieId = movieId,
             title = title,

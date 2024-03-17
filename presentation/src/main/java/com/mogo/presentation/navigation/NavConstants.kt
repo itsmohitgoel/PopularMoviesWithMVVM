@@ -1,6 +1,6 @@
 package com.mogo.presentation.navigation
 
 object NavigationParams {
-    const val MOVIE_ID = "movieID"
+    const val PARAM_MOVIE_ID = "movieID"
 
 }

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mogo.domain.usecase.MovieListUseCase
 import com.mogo.domain.utils.Result
-import com.mogo.moviescatalogue.movielist.MovieListState
-import com.mogo.moviescatalogue.movielist.mapper.MovieListPresentationMapper
+import com.mogo.moviescatalogue.movielist.MovieListState_Old
+import com.mogo.presentation.movielist.mapper.MovieListPresentationMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,14 +15,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieListViewModel @Inject constructor(
+class MovieListViewModel_Old @Inject constructor(
     private val useCase: MovieListUseCase,
     private val mapper: MovieListPresentationMapper,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(MovieListState(isLoading = true))
-    val state: StateFlow<MovieListState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(MovieListState_Old(isLoading = true))
+    val state: StateFlow<MovieListState_Old> = _state.asStateFlow()
 
     /**
      * This function get the Movie List from Repository via MovieListUseCase
@@ -33,20 +33,20 @@ class MovieListViewModel @Inject constructor(
             when (result) {
                 is Result.Success -> {
                     _state.value =
-                        MovieListState(
-                            movieList =
-                            mapper.mapListDomainModelToPresentationModel(result.data)
+                        MovieListState_Old(
+                            movies =
+                            mapper.mapMovieInfoListToMovieItemList(result.data)
                         )
                 }
 
                 is Result.Error -> {
                     _state.value =
-                        MovieListState(error = result.message)
+                        MovieListState_Old(error = result.message)
                 }
 
-                is Result.Loading -> {
-                    _state.value = MovieListState(isLoading = true)
-                }
+//                is Result.Loading -> {
+//                    _state.value = MovieListState_Old(isLoading = true)
+//                }
             }
 
         }
