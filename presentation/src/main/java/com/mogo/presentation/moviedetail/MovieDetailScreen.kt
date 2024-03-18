@@ -65,13 +65,7 @@ fun  MovieDetailScreen(
             }
             .collect()
     }
-//    val state: State<MovieDetailState> = viewModel.state.collectAsState()
-//    val movieDetail: MovieItem? = state.value.movieItem
-//
-//    LaunchedEffect(Unit, block = {
-//        viewModel.getMovieDetail()  //TODO" remove hardcoded id
-//    })
-//
+
     Box(
         modifier = modifier.fillMaxSize()
     ) {

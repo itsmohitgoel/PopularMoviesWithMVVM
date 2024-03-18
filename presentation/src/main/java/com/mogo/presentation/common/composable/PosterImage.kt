@@ -32,7 +32,6 @@ fun PosterImage(
         modifier = modifier
             .width(MOVIE_DETAIL_IMAGE_WIDTH)
             .height(MOVIE_DETAIL_IMAGE_HEIGHT)
-//            .clip(RoundedCornerShape(IMAGE_ROUNDED_CORNER_RADIUS))
             .background(Color.White),
         contentDescription = contentDescription,
     )

@@ -11,7 +11,7 @@ import com.mogo.presentation.movielist.MovieListScreen
 import com.mogo.presentation.navigation.NavigationParams.PARAM_MOVIE_ID
 
 @Composable
-fun AppNavigation() {
+fun SetUpNavigationGraph() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = ScreensRoute.HOME_SCREEN.route) {

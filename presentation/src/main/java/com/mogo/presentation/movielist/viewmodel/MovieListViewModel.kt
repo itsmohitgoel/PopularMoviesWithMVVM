@@ -1,9 +1,12 @@
-package com.mogo.presentation.movielist
+package com.mogo.presentation.movielist.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mogo.domain.usecase.MovieListUseCase
 import com.mogo.domain.utils.Result
+import com.mogo.presentation.movielist.MovieListAction
+import com.mogo.presentation.movielist.MovieListOneTimeEvent
+import com.mogo.presentation.movielist.MovieListState
 import com.mogo.presentation.movielist.mapper.MovieListPresentationMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
