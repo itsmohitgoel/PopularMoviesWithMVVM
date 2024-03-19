@@ -15,7 +15,7 @@ class MovieListRepositoryImpl @Inject constructor(
     override suspend fun fetchMovies(): Result<List<MovieInfo>> {
         return handleNetworkCall {
             listMapper.mapMovieDtoListToMovieInfoList(
-                networkService.getMovies().moviesList
+                networkService.getMoviesResponse().moviesList
             )
         }
     }

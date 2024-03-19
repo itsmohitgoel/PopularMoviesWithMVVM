@@ -50,7 +50,7 @@ fun  MovieDetailScreen(
     movieId: Int
 ) {
     val viewModel: MovieDetailViewModel = hiltViewModel()
-    val stateValue: MovieDetailState = viewModel.viewStateFlow.collectAsState().value
+    val stateValue: MovieDetailViewState = viewModel.viewStateFlow.collectAsState().value
 
     LaunchedEffect(Unit) {
         viewModel.submitAction(MovieDetailAction.LoadMovieDetail(movieId = movieId))
@@ -66,13 +66,13 @@ fun  MovieDetailScreen(
             .collect()
     }
 
-    Box(
+    Column(
         modifier = modifier.fillMaxSize()
     ) {
         TopToolBar(Pair(true, "Popular Movies"), navController)
         when {
             stateValue.loading -> {
-                CircularProgressIndicator(modifier = modifier.align(Alignment.Center))
+                CircularProgressIndicator(modifier = modifier.align(alignment = Alignment.CenterHorizontally))
             }
             stateValue.error.isNotBlank() -> ErrorComponent(errorMessage = stateValue.error)
             stateValue.movie.movieId > 0 -> {

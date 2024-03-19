@@ -29,7 +29,7 @@ fun MovieListScreen(
     navController: NavController
 ) {
     val viewModel: MovieListViewModel = hiltViewModel()
-    val stateValue: MovieListState = viewModel.viewStateFlow.collectAsState().value
+    val stateValue: MovieListViewState = viewModel.viewStateFlow.collectAsState().value
 
     LaunchedEffect(Unit) {
         viewModel.submitAction(MovieListAction.LoadMovieList)

@@ -1,6 +1,5 @@
 package com.mogo.presentation.moviedetail.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mogo.domain.model.MovieInfo
@@ -9,7 +8,7 @@ import com.mogo.domain.utils.Result
 import com.mogo.presentation.common.model.MovieItem
 import com.mogo.presentation.moviedetail.MovieDetailAction
 import com.mogo.presentation.moviedetail.MovieDetailOneTimeEvent
-import com.mogo.presentation.moviedetail.MovieDetailState
+import com.mogo.presentation.moviedetail.MovieDetailViewState
 import com.mogo.presentation.moviedetail.mapper.MovieDetailPresentationMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,13 +24,12 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
     private val usecase: MovieDetailUseCase,
-    private val mapper: MovieDetailPresentationMapper,
-    private val savedStateHandle: SavedStateHandle
+    private val mapper: MovieDetailPresentationMapper
 ) : ViewModel() {
-    private val _viewStateFlow: MutableStateFlow<MovieDetailState> by lazy {
-        MutableStateFlow(MovieDetailState(loading = true))
+    private val _viewStateFlow: MutableStateFlow<MovieDetailViewState> by lazy {
+        MutableStateFlow(MovieDetailViewState(loading = true))
     }
-    val viewStateFlow: StateFlow<MovieDetailState> = _viewStateFlow
+    val viewStateFlow: StateFlow<MovieDetailViewState> = _viewStateFlow
 
     private val actionFlow: MutableSharedFlow<MovieDetailAction> =
         MutableSharedFlow()
@@ -52,17 +50,17 @@ class MovieDetailViewModel @Inject constructor(
     private fun handleAction(action: MovieDetailAction) {
         when (action) {
             is MovieDetailAction.LoadMovieDetail -> viewModelScope.launch(Dispatchers.IO) {
-                val state: MovieDetailState = fetchMovieDetailState(action.movieId)
+                val state: MovieDetailViewState = fetchMovieDetailState(action.movieId)
                 submitState(state)
             }
         }
     }
 
-    private suspend fun fetchMovieDetailState(movieId: Int): MovieDetailState {
+    private suspend fun fetchMovieDetailState(movieId: Int): MovieDetailViewState {
         val result: Result<MovieInfo> = usecase.execute(movieId)
         val state = when (result) {
-            is Result.Error -> MovieDetailState(movie = MovieItem(), error = result.message)
-            is Result.Success -> MovieDetailState(movie = mapper.mapMovieInfoToMovieItem(result.data))
+            is Result.Error -> MovieDetailViewState(movie = MovieItem(), error = result.message)
+            is Result.Success -> MovieDetailViewState(movie = mapper.mapMovieInfoToMovieItem(result.data))
         }
 
         return state
@@ -74,7 +72,7 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    private fun submitState(state: MovieDetailState) {
+    private fun submitState(state: MovieDetailViewState) {
         _viewStateFlow.value = state
     }
 

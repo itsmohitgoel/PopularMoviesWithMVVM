@@ -6,7 +6,7 @@ import com.mogo.domain.usecase.MovieListUseCase
 import com.mogo.domain.utils.Result
 import com.mogo.presentation.movielist.MovieListAction
 import com.mogo.presentation.movielist.MovieListOneTimeEvent
-import com.mogo.presentation.movielist.MovieListState
+import com.mogo.presentation.movielist.MovieListViewState
 import com.mogo.presentation.movielist.mapper.MovieListPresentationMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -24,10 +24,10 @@ class MovieListViewModel @Inject constructor(
     private val useCase: MovieListUseCase,
     private val mapper: MovieListPresentationMapper
 ) : ViewModel() {
-    private val _viewStateFlow: MutableStateFlow<MovieListState> by lazy {
-        MutableStateFlow(MovieListState(loading = true))
+    private val _viewStateFlow: MutableStateFlow<MovieListViewState> by lazy {
+        MutableStateFlow(MovieListViewState(loading = true))
     }
-    val viewStateFlow: StateFlow<MovieListState> = _viewStateFlow
+    val viewStateFlow: StateFlow<MovieListViewState> = _viewStateFlow
 
     private val actionFlow: MutableSharedFlow<MovieListAction> = MutableSharedFlow()
 
@@ -39,7 +39,7 @@ class MovieListViewModel @Inject constructor(
         viewModelScope.launch {
             actionFlow.collect { action ->
                 handleAction(action)
-            }
+            } /// todo : move
         }
     }
 
@@ -48,7 +48,7 @@ class MovieListViewModel @Inject constructor(
         when (action) {
             is MovieListAction.LoadMovieList -> viewModelScope.launch(Dispatchers.IO) {
                 // Fetch UI State
-                val state: MovieListState = fetchMovieListState()
+                val state: MovieListViewState = fetchMovieListState()
                 submitState(state)
             }
 
@@ -58,23 +58,23 @@ class MovieListViewModel @Inject constructor(
         }
     }
 
-    private suspend fun fetchMovieListState(): MovieListState {
+    private suspend fun fetchMovieListState(): MovieListViewState {
         val result = useCase.execute()
         val state = when (result) {
             is Result.Success -> {
-                MovieListState(
+                MovieListViewState(
                     movies = mapper.mapMovieInfoListToMovieItemList(
                         result.data
                     )
                 )
             }
 
-            is Result.Error -> MovieListState(error = result.message)
+            is Result.Error -> MovieListViewState(error = result.message)
         }
         return state
     }
 
-    private fun submitState(state: MovieListState) {
+    private fun submitState(state: MovieListViewState) {
         _viewStateFlow.value = state
     }
 
@@ -85,7 +85,7 @@ class MovieListViewModel @Inject constructor(
     }
 
     fun submitOneTimeEvent(oneTimeEvent: MovieListOneTimeEvent) {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch {
             _oneTimeEventChannel.send(oneTimeEvent)
         }
     }

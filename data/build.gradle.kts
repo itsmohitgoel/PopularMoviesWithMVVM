@@ -14,6 +14,7 @@ android {
 
     defaultConfig {
         minSdk = ProjectConfig.minSdk
+        testInstrumentationRunner = Dependencies.testRunner
     }
 
     buildTypes {
@@ -53,4 +54,5 @@ dependencies {
     testImplementation(TestDependencies.coroutinesTest)
     testImplementation(TestDependencies.mockitoCore)
     testImplementation(TestDependencies.junit)
+    testImplementation(TestDependencies.mockk)
 }
