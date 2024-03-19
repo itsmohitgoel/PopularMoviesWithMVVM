@@ -2,17 +2,14 @@ package com.mogo.presentation.moviedetail.viewmodel
 
 import com.mogo.domain.model.MovieInfo
 import com.mogo.domain.usecase.MovieDetailUseCase
-import com.mogo.domain.usecase.MovieListUseCase
 import com.mogo.domain.utils.Result
 import com.mogo.presentation.MainDispatcherRule
 import com.mogo.presentation.common.model.MovieItem
 import com.mogo.presentation.moviedetail.MovieDetailAction
 import com.mogo.presentation.moviedetail.mapper.MovieDetailPresentationMapper
-import com.mogo.presentation.movielist.MovieListAction
-import com.mogo.presentation.movielist.mapper.MovieListPresentationMapper
-import com.mogo.presentation.movielist.viewmodel.MovieListViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -21,6 +18,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieDetailViewModelTest {
     @get:Rule
     val manDispatcherRule = MainDispatcherRule()
@@ -101,8 +99,5 @@ class MovieDetailViewModelTest {
             releaseDate = "2024-01-18",
             tagline = "Default: Tag line"
         )
-
-        val movieInfoList = listOf(movieInfo)
-        val movieItemList = listOf(movieItem)
     }
 }

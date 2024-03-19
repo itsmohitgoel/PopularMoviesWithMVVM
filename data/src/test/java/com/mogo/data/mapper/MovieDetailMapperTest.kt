@@ -1,12 +1,14 @@
 package com.mogo.data.mapper
 
 import com.mogo.data.model.MovieDto
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test
 
 class MovieDetailMapperTest {
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `GIVEN a movie Dto list WHEN the mapping of movies is requested THEN movie info list is returned`() =
         runTest {

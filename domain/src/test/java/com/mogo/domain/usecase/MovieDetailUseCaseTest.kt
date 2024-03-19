@@ -7,12 +7,14 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieDetailUseCaseTest {
     private lateinit var movieDetailUseCase: MovieDetailUseCase
     private val repository: MovieDetailRepository = mockk()
@@ -37,7 +39,7 @@ class MovieDetailUseCaseTest {
     @Test
     fun `GIVEN a movie list WHEN specific movie is requested But error occurred THEN Error type is returned`() =
         runTest {
-            coEvery {repository.fetchMovieDetail(MOVIE_ID) } returns  Result.Error(message = ERROR_MESSAGE )
+            coEvery { repository.fetchMovieDetail(MOVIE_ID) } returns Result.Error(message = ERROR_MESSAGE)
 
             val result = movieDetailUseCase.execute(MOVIE_ID) as Result.Error
 

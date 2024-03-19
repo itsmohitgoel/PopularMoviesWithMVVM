@@ -1,7 +1,6 @@
 package com.mogo.presentation.moviedetail.mapper
 
 import com.mogo.domain.model.MovieInfo
-import com.mogo.presentation.common.model.MovieItem
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test

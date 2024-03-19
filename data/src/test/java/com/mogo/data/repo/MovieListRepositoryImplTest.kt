@@ -7,12 +7,14 @@ import com.mogo.data.repository.MovieListRepositoryImpl
 import com.mogo.domain.utils.Result
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieListRepositoryImplTest {
     private lateinit var repoImpl: MovieListRepositoryImpl
     private lateinit var networkService: NetworkService

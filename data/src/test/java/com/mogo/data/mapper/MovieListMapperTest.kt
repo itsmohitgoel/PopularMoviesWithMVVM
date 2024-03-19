@@ -1,10 +1,12 @@
 package com.mogo.data.mapper
 
 import com.mogo.data.model.MovieDto
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieListMapperTest {
 
     @Test
