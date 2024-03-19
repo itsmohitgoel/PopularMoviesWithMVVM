@@ -1,6 +1,6 @@
 # PopularMovies
 
-Illustrates Clean Architecture using MVVM design pattern for Android
+Illustrates Clean Architecture using MVI design pattern for Android
 
 ### API Key
 1. The app uses themoviedb.org API to get movie information and posters. You must provide your own API key
