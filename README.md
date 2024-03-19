@@ -10,7 +10,7 @@ Illustrates Clean Architecture using MVVM design pattern for Android
 
 ### USED CONCEPTS & LIBRARIES
 - Kotlin
-- MVVM
+- MVI
 - Jetpack components:
    - Jetpack Compose
    - Lifecycle
@@ -19,6 +19,7 @@ Illustrates Clean Architecture using MVVM design pattern for Android
 - Retrofit
 - Kotlin Flow
 - Hilt
+- Unit Testing via Mockk
 
 ### SCREENSHOT
 ![image](https://github.com/itsmohitgoel/PopularMoviesWithMVVM/assets/13984005/0654f647-188e-4a3e-9372-7d4e9defa3f1)
