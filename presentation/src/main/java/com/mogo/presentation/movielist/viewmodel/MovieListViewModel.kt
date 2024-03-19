@@ -36,24 +36,24 @@ class MovieListViewModel @Inject constructor(
         _oneTimeEventChannel.receiveAsFlow()
 
     init {
-        viewModelScope.launch {
-            actionFlow.collect { action ->
-                handleAction(action)
-            } /// todo : move
-        }
+        handleAction()
     }
 
 
-    private fun handleAction(action: MovieListAction) {
-        when (action) {
-            is MovieListAction.LoadMovieList -> viewModelScope.launch(Dispatchers.IO) {
-                // Fetch UI State
-                val state: MovieListViewState = fetchMovieListState()
-                submitState(state)
-            }
+    private fun handleAction() {
+        viewModelScope.launch {
+            actionFlow.collect { action ->
+                when (action) {
+                    is MovieListAction.LoadMovieList -> viewModelScope.launch(Dispatchers.IO) {
+                        // Fetch UI State
+                        val state: MovieListViewState = fetchMovieListState()
+                        submitState(state)
+                    }
 
-            is MovieListAction.MovieListItemClick -> {
-                submitOneTimeEvent(MovieListOneTimeEvent.NavigateToDetailScreen(action.movieId))
+                    is MovieListAction.MovieListItemClick -> {
+                        submitOneTimeEvent(MovieListOneTimeEvent.NavigateToDetailScreen(action.movieId))
+                    }
+                }
             }
         }
     }

@@ -13,7 +13,6 @@ object Versions {
     const val lifecycle = "2.6.2"
     const val hilt = "2.48"
     const val hiltCompiler = "1.1.0"
-    const val turbineTest = "1.0.0"
     const val archCoreTest = "2.2.0"
     const val activityCompose = "1.8.2"
     const val compose = "1.6.0"
@@ -88,5 +87,4 @@ object TestDependencies {
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockito}"
     const val coroutinesTest =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
-    const val turbineTest = "app.cash.turbine:turbine:${Versions.turbineTest}"
 }

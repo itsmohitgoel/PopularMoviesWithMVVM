@@ -42,7 +42,7 @@ fun MovieListScreen(
                     is MovieListOneTimeEvent.NavigateToDetailScreen -> {
                         navController.navigate(
                             ScreensRoute.DETAIL_SCREEN.route + "/${oneTimeEvent.movieId}"
-                        ) //TODO: keep navController in one place i.e. graph
+                        )
                     }
                 }
 

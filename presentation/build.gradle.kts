@@ -55,5 +55,4 @@ dependencies {
     testImplementation(TestDependencies.junit)
     testImplementation(TestDependencies.mockitoCore)
     testImplementation(TestDependencies.mockk)
-    testImplementation(TestDependencies.turbineTest)
 }
