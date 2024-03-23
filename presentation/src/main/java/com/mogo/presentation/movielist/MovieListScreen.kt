@@ -1,5 +1,6 @@
 package com.mogo.presentation.movielist
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,11 +9,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.mogo.presentation.common.composable.ErrorComponent
@@ -31,8 +38,15 @@ fun MovieListScreen(
     val viewModel: MovieListViewModel = hiltViewModel()
     val stateValue: MovieListViewState = viewModel.viewStateFlow.collectAsState().value
 
-    LaunchedEffect(Unit) {
-        viewModel.submitAction(MovieListAction.LoadMovieList)
+    var shouldCallLandingApi by rememberSaveable {
+        mutableStateOf(true)
+    }
+
+    if (shouldCallLandingApi) {
+        LaunchedEffect(Unit) {
+            viewModel.submitAction(MovieListAction.LoadMovieList)
+            shouldCallLandingApi = false
+        }
     }
 
     LaunchedEffect(Unit) {
@@ -75,7 +89,14 @@ fun MovieListScreen(
 
 @Composable
 fun MovieList(movies: List<MovieItem>, onItemClick: (MovieItem) -> Unit) {
-    LazyColumn(state = rememberLazyListState()) {
+    LazyColumn(state = rememberLazyListState(),
+        modifier = Modifier.background(
+            brush = Brush.linearGradient(
+                colors = listOf(MaterialTheme.colors.primary,
+                    MaterialTheme.colors.secondary
+                    )
+            )
+        )) {
         items(
             items = movies,
             itemContent = { item ->

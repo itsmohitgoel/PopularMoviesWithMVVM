@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.mogo.presentation.R
 import com.mogo.presentation.common.FontSize.TITLE
-import com.mogo.presentation.common.UiConstants.MAX_LINE_DOUBLE
-import com.mogo.presentation.common.UiConstants.PADDING_MEDIUM
-import com.mogo.presentation.common.UiConstants.PADDING_SMALL
+import com.mogo.presentation.common.Dimensions.MAX_LINE_DOUBLE
+import com.mogo.presentation.common.Dimensions.PADDING_MEDIUM
+import com.mogo.presentation.common.Dimensions.PADDING_SMALL
 import com.mogo.presentation.common.composable.MovieTextLabel
 import com.mogo.presentation.common.composable.RoundedImage
 import com.mogo.presentation.common.model.MovieItem

@@ -16,10 +16,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
     @Binds
-    @Singleton
     abstract fun bindMovieListRepository(repositoryImpl: MovieListRepositoryImpl): MovieListRepository
 
     @Binds
-    @Singleton
     abstract fun bindMovieDetailRepository(movieDetailRepositoryImpl: MovieDetailRepositoryImpl): MovieDetailRepository
 }

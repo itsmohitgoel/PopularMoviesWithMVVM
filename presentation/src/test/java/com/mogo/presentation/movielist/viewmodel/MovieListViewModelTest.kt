@@ -1,12 +1,13 @@
 package com.mogo.presentation.movielist.viewmodel
 
-import com.mogo.domain.model.MovieInfo
 import com.mogo.domain.usecase.MovieListUseCase
 import com.mogo.domain.utils.Result
 import com.mogo.presentation.MainDispatcherRule
-import com.mogo.presentation.common.model.MovieItem
 import com.mogo.presentation.movielist.MovieListAction
 import com.mogo.presentation.movielist.mapper.MovieListPresentationMapper
+import com.mogo.presentation.utils.TestDataGenerators.ERROR_MESSAGE
+import com.mogo.presentation.utils.TestDataGenerators.movieInfoList
+import com.mogo.presentation.utils.TestDataGenerators.movieItemList
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -71,38 +72,6 @@ class MovieListViewModelTest {
             viewModel.submitAction(MovieListAction.LoadMovieList)
         }
 
-        assertTrue(viewModel.viewStateFlow.value.error == ERROR_MESSAGE)
-    }
-
-    private companion object {
-        const val MOVIE_ID = 1234
-        const val MOVIE_TITLE = "No Way Up"
-        const val ERROR_MESSAGE = "Error: Something went wrong"
-
-        val movieInfo = MovieInfo(
-            movieId = MOVIE_ID,
-            title = MOVIE_TITLE,
-            posterPath = "/hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
-            backdropPath = "/mDeUmPe4MF35WWlAqj4QFX5UauJ.jpg",
-            summary = "Characters from different backgrounds are thrown together when the plane they\u0027re travelling on crashes into the Pacific Ocean. A nightmare fight for survival ensues with the air supply running out and dangers creeping in from all sides.",
-            rating = 6.073,
-            popularity = 1709.062,
-            releaseDate = "2024-01-18",
-            tagline = "Default: Tag line"
-        )
-
-        val movieItem = MovieItem(
-            movieId = MOVIE_ID,
-            title = MOVIE_TITLE,
-            backdropPath = "/mDeUmPe4MF35WWlAqj4QFX5UauJ.jpg",
-            summary = "Characters from different backgrounds are thrown together when the plane they\u0027re travelling on crashes into the Pacific Ocean. A nightmare fight for survival ensues with the air supply running out and dangers creeping in from all sides.",
-            rating = 6.073,
-            popularity = 1709.062,
-            releaseDate = "2024-01-18",
-            tagline = "Default: Tag line"
-        )
-
-        val movieInfoList = listOf(movieInfo)
-        val movieItemList = listOf(movieItem)
+        assert(viewModel.viewStateFlow.value.error == ERROR_MESSAGE)
     }
 }

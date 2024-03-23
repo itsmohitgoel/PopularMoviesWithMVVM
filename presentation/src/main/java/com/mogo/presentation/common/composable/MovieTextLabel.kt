@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import com.mogo.presentation.common.FontSize.DEFAULT
-import com.mogo.presentation.common.UiConstants.MAX_LINE_SINGLE
+import com.mogo.presentation.common.Dimensions.MAX_LINE_SINGLE
 
 @Composable
 fun MovieTextLabel(

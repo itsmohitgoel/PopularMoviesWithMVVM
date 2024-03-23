@@ -12,8 +12,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.mogo.presentation.common.UiConstants.IMAGE_ROUNDED_CORNER_RADIUS
-import com.mogo.presentation.common.UiConstants.MOVIE_LIST_IMAGE_SIZE
+import com.mogo.presentation.common.Dimensions.IMAGE_ROUNDED_CORNER_RADIUS
+import com.mogo.presentation.common.Dimensions.MOVIE_LIST_IMAGE_SIZE
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable

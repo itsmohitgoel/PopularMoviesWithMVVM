@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MoviesCatalogue" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.MoviesCatalogue" parent="Theme.AppCompat.Light.NoActionBar" >
 
     <item name="colorPrimary" type="color">@color/purple_500</item>
     <item name="colorPrimaryVariant" type="color">@color/purple_700</item>
@@ -11,6 +11,7 @@
     <item name="colorSecondaryVariant" type="color">@color/teal_700</item>
     <item name="colorOnSecondary" type="color">@color/black</item>
     <!-- Status bar color. -->
-<!--    <item name="android:statusBarColor" type="color">?attr/colorPrimaryVariant</item>-->
+    <item name="android:statusBarColor" type="color">@color/black_dull</item>
     <item name="colorControlNormal" type="color">@color/white</item>
+    </style>
 </resources>

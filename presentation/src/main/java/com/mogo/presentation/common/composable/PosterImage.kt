@@ -10,8 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.mogo.presentation.common.UiConstants.MOVIE_DETAIL_IMAGE_HEIGHT
-import com.mogo.presentation.common.UiConstants.MOVIE_DETAIL_IMAGE_WIDTH
+import com.mogo.presentation.common.Dimensions.MOVIE_DETAIL_IMAGE_HEIGHT
+import com.mogo.presentation.common.Dimensions.MOVIE_DETAIL_IMAGE_WIDTH
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
